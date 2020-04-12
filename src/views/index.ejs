@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>PixaBay</title>
+</head>
+<style>
+    form{
+        width: 60%;
+        margin: 20px auto;
+    }
+</style>
+<body>
+    <div class="ui menu">
+        <div class="header item">
+          <h1>PixaBay</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <form action="/" method="POST">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Search for Image</label>
+              <input name="imageInput" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+            <% data.forEach(function(img){ %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="img-thumbnail">
+                        <img  src="<%= img.largeImageURL %>">
+                        <div class="caption">
+                            <h4><%= img.downloads %></h4>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+
+    </div>      
+</body>
+</html>
