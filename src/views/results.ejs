@@ -13,6 +13,28 @@
         width: 60%;
         margin: 20px auto;
     }
+
+    img{
+        width: 320px;
+        height: 200px;
+        margin: 5px auto;
+        border-radius: 3px;
+    }
+
+    
+    .img-thumbnail{
+        margin-bottom: 20px;
+    }
+
+    h1{
+        margin: 10px auto;
+    }
+
+    small{
+        display: inline;
+        margin-left: 7px;
+        color: black;
+    }
 </style>
 <body>
     <nav class="navbar navbar-dark bg-dark">
@@ -22,11 +44,29 @@
     <div class="container">
         <form action="/" method="POST">
             <div class="form-group">
-              <label for="exampleInputEmail1">Search for Image</label>
+              <h1>Search for Image</h1>
               <input name="imageInput" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+
+
+        <div class="row" style="display: flex; flex-wrap: wrap;">
+            <% images.forEach(function(img){ %>
+                <div class="col-md-4 col-sm-6">
+                    <div class="img-thumbnail text-center">
+                        <img src="<%= img.largeImageURL %>">
+                        <div class="caption" style="align-items: flex-start;">
+                            <i class="fas fa-heart fa-lg" style="color: red;"><small><%= img.likes %></small></i>
+                        </div>
+                        <a href="<%= img.largeImageURL %>" download="<%= img.largeImageURL %>">
+                            <button type="button" class="btn btn-primary">Download</button>
+                        </a>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
     </div>      
 </body>
 </html>
+

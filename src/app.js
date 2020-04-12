@@ -25,18 +25,22 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     var imageResult = req.body.imageInput
-    
-    axios.get(`https://pixabay.com/api/?key=16004459-b53de54a959e38e06433e038c&q=${imageResult}&image_type=photo&pretty=true`)
+    res.redirect('/images/'+imageResult)
+})
+
+app.get('/images/:id', (req, res) => {
+    var searchImage = req.params.id
+
+    axios.get(`https://pixabay.com/api/?key=16004459-b53de54a959e38e06433e038c&q=${searchImage}&image_type=photo&pretty=true`)
     .then(function(response){
-        var data = response.data.hits
-        res.render('index',data)
-        console.log(data)
+        const data = response.data.hits
+        res.render('results', {images: data})  
     }).catch(function (err){
         console.log(err)
         res.send('cant get image')
     })
-})
 
+})
 
 app.listen(port, () => {
     console.log('server is up and running on port ' +port)
